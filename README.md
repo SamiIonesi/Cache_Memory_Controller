@@ -19,9 +19,11 @@ The system consists of the following components:
 
 ## B_unit FSM Diagram
 The Bus unit manages the request lifecycle. It sends a request to the Arbiter and waits for an acknowledgment before latching user-provided address and data values.
+
 <img width="480" height="481" alt="image" src="https://github.com/user-attachments/assets/a12a8ab4-5250-472d-a5d4-2782a6b45622" />
 
 ## Arbiter FSM Diagram
 The Arbiter acts as a Moore machine that manages priority and SRAM timing. It ensures that the winning Master has exclusive access to the memory for a fixed 4-cycle window.
+
 <img width="434" height="453" alt="image" src="https://github.com/user-attachments/assets/312fbc97-937c-41bb-a687-6e6a5b6decfc" />
 
