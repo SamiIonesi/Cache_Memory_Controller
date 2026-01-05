@@ -59,9 +59,9 @@ States:
 
 4. Execution:
 
-  - Arbiter (S_PROC): Drives we_to_mem=1, addr_to_mem, and data_to_mem towards the SRAM.
+    - Arbiter (S_PROC): Drives we_to_mem=1, addr_to_mem, and data_to_mem towards the SRAM.
 
-  - Arbiter (S_ACK1): Raises ack for the specific B_unit.
+    - Arbiter (S_ACK1): Raises ack for the specific B_unit.
 
 5. Handshake:
 
