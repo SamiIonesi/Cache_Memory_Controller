@@ -28,29 +28,4 @@ The Arbiter acts as a Moore machine that manages priority and SRAM timing. It en
 <img width="434" height="453" alt="image" src="https://github.com/user-attachments/assets/312fbc97-937c-41bb-a687-6e6a5b6decfc" />
 
 
-stateDiagram-v2
-    state "S_IDLE (00)" as IDLE
-    state "S_WAIT_ACK1 (01)" as WA1
-    state "S_WAIT_ACK2 (10)" as WA2
-    state "S_DONE (11)" as DONE
-
-    [*] --> IDLE
-    IDLE --> WA1 : req_in == 1
-    WA1 --> WA2 : ack == 1
-    WA2 --> DONE : (Automatic)
-    DONE --> IDLE : (Automatic)
-
-    note right of WA1
-        Asserts <b>req_out = 1</b>
-        Drives Address & Data
-    end note
-
-    note right of WA2
-        De-asserts <b>req_out = 0</b>
-        (Handshake complete)
-    end note
-
-    note right of DONE
-        <b>Latches data</b> if Read op
-    end note
 
