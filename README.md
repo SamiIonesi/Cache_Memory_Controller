@@ -20,10 +20,30 @@ The system consists of the following components:
 ## B_unit FSM Diagram
 The Bus unit manages the request lifecycle. It sends a request to the Arbiter and waits for an acknowledgment before latching user-provided address and data values.
 
+States:
+
+- S_IDLE: Waits for an internal request (req_in).
+
+- S_WAIT_ACK1: Asserts req_out to the arbiter and drives address/data/control signals. Waits for the Arbiter to respond with ack.
+
+- S_WAIT_ACK2: De-asserts req_out (handshake completion).
+
+- S_DONE: Finalizes the transaction. If it was a Read operation, it latches the data coming from memory.
+
 <img width="480" height="481" alt="image" src="https://github.com/user-attachments/assets/a12a8ab4-5250-472d-a5d4-2782a6b45622" />
 
 ## Arbiter FSM Diagram
 The Arbiter acts as a Moore machine that manages priority and SRAM timing. It ensures that the winning Master has exclusive access to the memory for a fixed 4-cycle window.
+
+States:
+
+- S_IDLE: Monitors requests (req0 - req3). If a request exists, it latches the winner based on priority and the Write/Read type.
+
+- S_PROC: Drives the SRAM interface signals (addr_to_mem, data_to_mem, we_to_mem) based on the selected master.
+
+- S_ACK1: Asserts the specific ack signal for the winning B_unit.
+
+- S_ACK2: Maintains ack high. If the operation is a Read, it routes data from memory to the specific B_unit.
 
 <img width="434" height="453" alt="image" src="https://github.com/user-attachments/assets/312fbc97-937c-41bb-a687-6e6a5b6decfc" />
 
