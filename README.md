@@ -67,7 +67,7 @@ States:
 
     - The B_unit detects ack=1 and transitions to S_WAIT_ACK2.
 
-    - he B_unit lowers req_out=0.
+    - The B_unit lowers req_out=0.
 
 6. Completion: The Arbiter moves to S_ACK2 (holding signals stable) and then back to S_IDLE. The B_unit moves to S_DONE and then S_IDLE.
 
