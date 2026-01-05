@@ -59,15 +59,15 @@ States:
 
 4. Execution:
 
-- Arbiter (S_PROC): Drives we_to_mem=1, addr_to_mem, and data_to_mem towards the SRAM.
+  - Arbiter (S_PROC): Drives we_to_mem=1, addr_to_mem, and data_to_mem towards the SRAM.
 
-- Arbiter (S_ACK1): Raises ack for the specific B_unit.
+  - Arbiter (S_ACK1): Raises ack for the specific B_unit.
 
 5. Handshake:
 
-- The B_unit detects ack=1 and transitions to S_WAIT_ACK2.
+  - The B_unit detects ack=1 and transitions to S_WAIT_ACK2.
 
-- he B_unit lowers req_out=0.
+  - he B_unit lowers req_out=0.
 
 6. Completion: The Arbiter moves to S_ACK2 (holding signals stable) and then back to S_IDLE. The B_unit moves to S_DONE and then S_IDLE.
 
