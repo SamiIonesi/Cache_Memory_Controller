@@ -47,5 +47,53 @@ States:
 
 <img width="434" height="453" alt="image" src="https://github.com/user-attachments/assets/312fbc97-937c-41bb-a687-6e6a5b6decfc" />
 
+## Transaction Flows
+
+### Write Flow (B_unit writing to Memory)
+
+1. Initiation: The B_unit receives an internal req_in and wr_in=1. It moves to S_WAIT_ACK1.
+
+2. Request: The B_unit sets req_out=1 and drives the Address and Data onto the bus.
+
+3. Arbitration: The Arbiter (in S_IDLE) sees the request. It transitions to S_PROC, locking the selection ID.
+
+4. Execution:
+
+- Arbiter (S_PROC): Drives we_to_mem=1, addr_to_mem, and data_to_mem towards the SRAM.
+
+- Arbiter (S_ACK1): Raises ack for the specific B_unit.
+
+5. Handshake:
+
+- The B_unit detects ack=1 and transitions to S_WAIT_ACK2.
+
+- he B_unit lowers req_out=0.
+
+6. Completion: The Arbiter moves to S_ACK2 (holding signals stable) and then back to S_IDLE. The B_unit moves to S_DONE and then S_IDLE.
+
+### Read Flow (B_unit reading from Memory)
+
+1. Initiation: The B_unit receives an internal req_in and wr_in=0. It moves to S_WAIT_ACK1.
+
+2. Request: The B_unit sets req_out=1, drives the Address, and sets data bus to 0 (Z or ignored).
+
+3. Arbitration: The Arbiter (in S_IDLE) sees the request. It transitions to S_PROC.
+
+4. Execution:
+
+- Arbiter (S_PROC): Drives we_to_mem=0 and addr_to_mem towards the SRAM.
+
+- Arbiter (S_ACK1): Raises ack for the specific B_unit.
+
+5. Data Valid & Handshake:
+
+- Arbiter (S_ACK2): The SRAM provides valid data (data_from_mem). The Arbiter routes this data to the winner's input bus (data_to_Bx).
+
+- The B_unit detects ack=1, transitions to S_WAIT_ACK2, and lowers req_out.
+
+6. Latching: The B_unit transitions to S_DONE. In this state, it checks !wr_out and latches the data available on the bus into its internal dout register.
+
+7. Completion: Both FSMs return to S_IDLE.
+
 
 
