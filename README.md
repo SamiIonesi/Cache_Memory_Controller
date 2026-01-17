@@ -18,7 +18,7 @@ The core of the project is a **Cache Controller** governed by a Finite State Mac
 
 The system is organized into three main hierarchical modules:
 
-![System Block Diagram](<img width="707" height="446" alt="image" src="https://github.com/user-attachments/assets/e452c0cd-31fe-450c-86f9-ee0a6f2a54bb" />)
+![System Block Diagram]<img width="707" height="446" alt="image" src="https://github.com/user-attachments/assets/e452c0cd-31fe-450c-86f9-ee0a6f2a54bb" />
 *(Figure 1: System Architecture)*
 
 ### 1. CPU (Processor)
