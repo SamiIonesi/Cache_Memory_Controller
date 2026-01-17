@@ -1,6 +1,6 @@
 # Cache_Memory_Controller
 
-## 📖 Project Overview
+## Project Overview
 This project implements a complete **Memory Hierarchy System** using SystemVerilog. The primary goal is to simulate the interaction between a CPU, a Direct-Mapped Cache, and a slower Main Memory (SDRAM).
 
 The core of the project is a **Cache Controller** governed by a Finite State Machine (FSM) that implements a **Write-Back Policy** using Dirty Bits. This ensures data consistency while optimizing performance by minimizing access to the slow main memory.
@@ -14,7 +14,7 @@ The core of the project is a **Cache Controller** governed by a Finite State Mac
 
 ---
 
-## 🏗️ System Architecture
+## System Architecture
 
 The system is organized into three main hierarchical modules:
 
@@ -38,7 +38,7 @@ Represents the large, slow main memory. It communicates with the Cache only duri
 
 ---
 
-## ⚙️ Logic & Control Flow
+## Logic & Control Flow
 
 The Cache Controller operates using an FSM with four primary states: `IDLE`, `COMPARE_TAG`, `ALLOCATE`, and `WRITE_BACK`.
 
@@ -66,7 +66,7 @@ The system handles four specific scenarios:
 
 ---
 
-## 🧪 Simulation & Testing
+## Simulation & Testing
 
 The project is verified using a system-level Testbench (`tb_top_system.sv`). The waveform below demonstrates the sequence of operations covering all behavioral cases.
 
@@ -83,7 +83,7 @@ The simulation performs the following sequence (visible in the waveform):
 
 ---
 
-## 🛠️ Implementation Details
+## Implementation Details
 
 * **Language:** SystemVerilog
 * **Simulation Tool:** Xilinx Vivado
@@ -96,12 +96,4 @@ The simulation performs the following sequence (visible in the waveform):
  
 <img width="347" height="285" alt="image" src="https://github.com/user-attachments/assets/646c270b-97b9-40ea-8fb3-d14c73c53c18" />
 
-## 🚀 How to Run
-
-1.  Clone the repository.
-2.  Open the project in **Xilinx Vivado**.
-3.  Add the source files located in the `/src` folder.
-4.  Set `tb_top_system` as the top simulation source.
-5.  Run **Behavioral Simulation**.
-6.  Add `cpu_cs`, `cpu_hit`, and `state` signals to the waveform viewer for better analysis.
 
